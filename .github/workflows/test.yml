@@ -1,11 +1,23 @@
-name: GitHub Actions Demo
+name: Playwright Scrape
 
 on:
   repository_dispatch:
-    types: [external-call]
+    types: [scrape]
 
 jobs:
-  run:
+  scrape:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "${{ github.event.client_payload.message }}"
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps
+
+      - name: Run scraping
+        run: npm run scrape
