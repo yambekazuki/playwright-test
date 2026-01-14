@@ -1,9 +1,14 @@
 name: GitHub Actions Demo
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        required: false
+        default: "from api"
 
 jobs:
-  echo_hello_world:
+  run:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "hello world!!"
+      - run: echo "${{ github.event.inputs.message }}"
