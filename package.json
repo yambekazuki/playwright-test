@@ -1,4 +1,10 @@
 {
+  "name": "playwright-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scrape": "node scrape.js"
+  },
   "dependencies": {
     "playwright": "^1.57.0"
   }
